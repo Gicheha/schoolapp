@@ -30,56 +30,40 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        @if( Auth::user()->role == 'Admin')
-                            <li class="nav-item">
-                                <a class="nav-link">Home</a>  
-                            </li>
-                             <li class="nav-item">
-                                 <a class="nav-link">Teachers</a> 
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link">Students</a> 
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link">Sign Up</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link">Log In</a>
-                            </li>
-                        @endif
-                        @if(Auth::user()->role == 'Student')
-                            <li class="nav-item">
-                                <a class="nav-link">Home</a>  
-                            </li>
-                             <li class="nav-item">
-                                 <a class="nav-link" href="{{route('')}}">Subjects</a> 
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link">KCPE</a> 
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link">Sign Up</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link">Sign In</a>
-                            </li> 
-                        @endif
-                        @if(Auth::user()->role == 'Teacher')
-                              <li class="nav-item">
-                                <a class="nav-link">Home</a>  
-                            </li>
-                             <li class="nav-item">
-                                 <a class="nav-link">Classes</a> 
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link">Students</a> 
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link">Sign Up</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link">Sign In</a>
-                            </li> 
+                        @if(\Auth::check())    
+                            @if( Auth::user()->role == 'Admin')
+                                <li class="nav-item">
+                                    <a class="nav-link">Home</a>  
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('teachers')}}">Teachers</a> 
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('students')}}">Students</a> 
+                                </li>
+                            @endif
+                            @if(Auth::user()->role == 'Student')
+                                <li class="nav-item">
+                                    <a class="nav-link">Home</a>  
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link">Subjects</a> 
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link">KCPE</a> 
+                                </li>
+                            @endif
+                            @if(Auth::user()->role == 'Teacher')
+                                <li class="nav-item">
+                                    <a class="nav-link">Home</a>  
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link">Classes</a> 
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('students')}}">Students</a> 
+                                </li>
+                            @endif
                         @endif
                     </ul>
 

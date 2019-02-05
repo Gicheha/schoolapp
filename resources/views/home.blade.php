@@ -5,16 +5,47 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
+                <div class="card-body">    
+                    @if(isset($teachers))
+                    <div class="table-responsive" id="users-table-wrapper">    
+                        <table class="table table-striped table-borderless">
+                            <thead>
+                                <th class="min-width-100">Name</th>
+                                <th class="min-width-100">Email</th>
+                                <th class="min-width-100">Role</th>
+                            </thead>
+                            <tbody>
+                            @foreach($teachers as $teacher)
+                            <tr>
+                                <td>{{$teacher->name}}</td>
+                                <td>{{$teacher->email}}</td>
+                                <td>{{$teacher->role}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>    
+                    @endif 
+                    @if(isset($students))
+                    <div class="table-responsive" id="users-table-wrapper">
+                        <table class="table table-striped table-borderless">
+                            <thead>
+                                <th class="min-width-100">Name</th>
+                                <th class="min-width-100">Email</th>
+                                <th class="min-width-100">Role</th>
+                            </thead>
+                            <tbody>
+                            @foreach($students as $student)
+                            <tr>
+                                <td>{{$student->name}}</td>
+                                <td>{{$student->email}}</td>
+                                <td>{{$student->role}}</td>
+                            </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                   @endif    
                 </div>
             </div>
         </div>

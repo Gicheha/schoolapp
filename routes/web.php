@@ -20,3 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 $this->get('/verify-user/{code}','Auth\RegisterController@activateUser')->name('activate.user');
+
+Route::get('/students','HomeController@loadStudents')->name('students');
+Route::get('/teachers','HomeController@loadTeachers')->name('teachers');
