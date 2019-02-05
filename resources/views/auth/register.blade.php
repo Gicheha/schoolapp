@@ -5,6 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{session()->get('message')}}
+                    </div>
+                @endif
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
@@ -38,10 +43,10 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{$errors->has('name') ? 'has-error': ''}}">
-                            <label for="role" class="col-md-4 control-label">Role</label>
+                        <div class="form-group row">
+                            <label for="role" class="col-md-4 col-from-label text-md-right">{{__('Role')}}</label>
                             <div class="col-md-5">
-                                <select id="role" type="text" class="form-control" name="role">
+                                <select id="role" type="text" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" name="role">
                                     <option value="null"></option>
                                     <option value="Student">Student</option>
                                     <option value="Teacher">Teacher</option>
