@@ -23,3 +23,6 @@ Route::get('/verify-user/{code}','Auth\RegisterController@activateUser')->name('
 
 Route::get('/students','HomeController@loadStudents')->name('students');
 Route::get('/teachers','HomeController@loadTeachers')->name('teachers');
+
+Route::get('/redirect', 'Auth\LoginController@redirectToProvider')->name('to_google');
+Route::get('/callback','Auth\LoginController@handleProviderCallback');
