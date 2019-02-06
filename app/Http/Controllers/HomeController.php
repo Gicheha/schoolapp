@@ -29,18 +29,21 @@ class HomeController extends Controller
     }
 
     public function loadStudents(){
-       if(auth()->user()->role == "Student"){
-           return auth()->logout();
+       if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Teacher'  ){
+           $students = DB::table('users')->where('role','=','Student')->get();
+           return view('home', compact('students'));
        }
-        $students = DB::table('users')->where('role','=','Student')->get();
-        return view('home', compact('students'));
+
+        return view('home')->with('message',"You cannot view this page");
     }
 
     public function loadTeachers(){
-        if(auth()->user()->role != "Admin"){
-            return auth()->logout();
+        if(auth()->user()->role == 'Admin'){
+            $teachers = DB::table('users')->where('role','=','Teacher')->get();
+            return view('home', compact('teachers'));
         }
-        $teachers = DB::table('users')->where('role','=','Teacher')->get();
-        return view('home', compact('teachers'));
+
+        return view('home')->with('message',"You cannot view this page");
+
     }
 }

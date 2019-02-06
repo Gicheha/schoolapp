@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/verify-user/{code}','Auth\RegisterController@activateUser')->name('activate.user');
 
 Route::get('/students','HomeController@loadStudents')->name('students');
-Route::get('/teachers','HomeController@loadTeachers')->name('teachers')->middleware('blockteachers');
+Route::get('/teachers','HomeController@loadTeachers')->name('teachers');
 
 Route::get('/redirect', 'Auth\LoginController@redirectToProvider')->name('to_google');
 Route::get('/callback','Auth\LoginController@handleProviderCallback');

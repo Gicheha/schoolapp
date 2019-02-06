@@ -15,6 +15,6 @@ class checkTeachers
      */
     public function handle($request, Closure $next)
     {
-        return auth()->user() && (auth()->user()->role == "Teacher") ? $next($request) : redirect('home')->with('message', "you are not allowed to access those resources");
+        return auth()->user() && (auth()->user()->role != 'Admin') ? $next($request) : redirect('home')->with('message', "you are not allowed to access those resources");
     }
 }
