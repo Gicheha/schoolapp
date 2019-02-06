@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
@@ -21,6 +22,20 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+
+    /**
+     * Overrides the authenticated method
+     *
+     */
+    public function authenticated(Request $request, $user)
+    {
+        if($user->status == false){
+            auth()->logout();
+            return back()->with("warning", "you need to confirm your account. We have sent you an activation code on your email account");
+        }
+
+        return redirect()->intended($this->redirectPath());
+    }
 
     /**
      * Where to redirect users after login.
