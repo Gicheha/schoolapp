@@ -29,11 +29,17 @@ class HomeController extends Controller
     }
 
     public function loadStudents(){
+       if(auth()->user()->role == "Student"){
+           return auth()->logout();
+       }
         $students = DB::table('users')->where('role','=','Student')->get();
         return view('home', compact('students'));
     }
 
     public function loadTeachers(){
+        if(auth()->user()->role != "Admin"){
+            return auth()->logout();
+        }
         $teachers = DB::table('users')->where('role','=','Teacher')->get();
         return view('home', compact('teachers'));
     }
